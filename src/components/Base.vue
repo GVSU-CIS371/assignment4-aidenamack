@@ -1,8 +1,20 @@
 <template>
-  <div class="baseBeverage"></div>
+  <div class="baseBeverage" :style="baseStyle"></div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from "vue";
+import { useBeverageStore } from "../stores/beverageStore";
+
+const beverageStore = useBeverageStore();
+
+const baseStyle = computed(() => {
+  const baseColor = beverageStore.selectedBase?.color ?? "#c6c6c6";
+  return {
+    backgroundColor: baseColor,
+  };
+});
+</script>
 
 <style scoped>
 .baseBeverage {
